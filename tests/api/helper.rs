@@ -5,7 +5,7 @@ use sqlx::{Connection, Executor, PgConnection, PgPool};
 use uuid::Uuid;
 use wiremock::MockServer;
 
-use bill_file_analyzer_service::configuration::{DatabaseSettings, get_configuration};
+use bill_file_analyzer_service::configuration::{get_configuration, DatabaseSettings};
 use bill_file_analyzer_service::startup::Application;
 use bill_file_analyzer_service::telemetry::{get_subscriber, init_subscriber};
 

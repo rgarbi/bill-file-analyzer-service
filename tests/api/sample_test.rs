@@ -1,5 +1,5 @@
-use uuid::Uuid;
 use bill_file_analyzer_service::domain::sample_model::Sample;
+use uuid::Uuid;
 
 use crate::helper::spawn_app;
 

@@ -2,7 +2,6 @@ use bill_file_analyzer_service::configuration::get_configuration;
 use bill_file_analyzer_service::startup::Application;
 use bill_file_analyzer_service::telemetry::{get_subscriber, init_subscriber};
 
-
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
     let subscriber = get_subscriber(

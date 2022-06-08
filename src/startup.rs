@@ -115,7 +115,6 @@ pub fn run(
             .route("/sample_file", web::post().to(routes::post_sample_file))
             .app_data(connection.clone())
             .app_data(email_client.clone())
-
     })
     .listen(listener)?
     .run();

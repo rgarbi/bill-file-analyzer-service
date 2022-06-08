@@ -1,15 +1,8 @@
-use sqlx::{Error, PgPool};
 use crate::domain::sample_model::Sample;
+use sqlx::{Error, PgPool};
 
-
-#[tracing::instrument(
-    name = "Saving new sample",
-    skip(sample, _pool)
-)]
-pub async fn insert_user(
-    sample: Sample,
-    _pool: &PgPool,
-) -> Result<String, Error> {
+#[tracing::instrument(name = "Saving new sample", skip(sample, _pool))]
+pub async fn insert_user(sample: Sample, _pool: &PgPool) -> Result<String, Error> {
     // Commenting out so that we dop not have to create a fake migration
     //sqlx::query!(
     //    r#"INSERT
@@ -29,7 +22,3 @@ pub async fn insert_user(
 
     Ok(sample.id.to_string())
 }
-
-
-
-

@@ -1,13 +1,11 @@
-use actix_web::{web, HttpResponse, Responder};
 use actix_web::http::Error;
+use actix_web::{web, HttpResponse, Responder};
 use futures_util::StreamExt;
 use sqlx::PgPool;
 use web::BytesMut;
 
-
 use crate::db::sample_broker::insert_user;
 use crate::domain::sample_model::Sample;
-
 
 #[tracing::instrument(
 name = "Post a sample model",
@@ -23,11 +21,11 @@ pub async fn post_sample(sample: web::Json<Sample>, pool: web::Data<PgPool>) -> 
     }
 }
 
-#[tracing::instrument(
-name = "Post a sample file to check the type",
-skip(body, _pool),
-)]
-pub async fn post_sample_file(mut body: web::Payload, _pool: web::Data<PgPool>) -> Result<HttpResponse, Error> {
+#[tracing::instrument(name = "Post a sample file to check the type", skip(body, _pool))]
+pub async fn post_sample_file(
+    mut body: web::Payload,
+    _pool: web::Data<PgPool>,
+) -> Result<HttpResponse, Error> {
     let mut bytes = BytesMut::new();
     while let Some(item) = body.next().await {
         let item = item?;
@@ -40,10 +38,7 @@ pub async fn post_sample_file(mut body: web::Payload, _pool: web::Data<PgPool>) 
     Ok(HttpResponse::Ok().finish())
 }
 
-
 pub async fn check_file(file_bytes: &[u8]) {
     let result = tree_magic::from_u8(file_bytes);
     println!("We got a file with a type of {}", result);
 }
-
-
