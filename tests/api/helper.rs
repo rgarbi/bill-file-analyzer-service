@@ -5,9 +5,9 @@ use sqlx::{Connection, Executor, PgConnection, PgPool};
 use uuid::Uuid;
 use wiremock::MockServer;
 
-use {{ tmplr.project_name | snake_case }}::configuration::{DatabaseSettings, get_configuration};
-use {{ tmplr.project_name | snake_case }}::startup::Application;
-use {{ tmplr.project_name | snake_case }}::telemetry::{get_subscriber, init_subscriber};
+use bill_file_analyzer_service::configuration::{DatabaseSettings, get_configuration};
+use bill_file_analyzer_service::startup::Application;
+use bill_file_analyzer_service::telemetry::{get_subscriber, init_subscriber};
 
 pub static TRACING: Lazy<()> = Lazy::new(|| {
     let default_filter_level = "info".to_string();

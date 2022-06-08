@@ -1,12 +1,12 @@
-use {{ tmplr.project_name | snake_case }}::configuration::get_configuration;
-use {{ tmplr.project_name | snake_case }}::startup::Application;
-use {{ tmplr.project_name | snake_case }}::telemetry::{get_subscriber, init_subscriber};
+use bill_file_analyzer_service::configuration::get_configuration;
+use bill_file_analyzer_service::startup::Application;
+use bill_file_analyzer_service::telemetry::{get_subscriber, init_subscriber};
 
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
     let subscriber = get_subscriber(
-        "{{ tmplr.project_name }}".into(),
+        "bill-file-analyzer-service".into(),
         "info".into(),
         std::io::stdout,
     );
