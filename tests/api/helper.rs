@@ -38,6 +38,16 @@ impl TestApp {
             .await
             .expect("Failed to execute request.")
     }
+
+    pub async fn post_file_sample(&self, body: Vec<u8>) -> Response {
+        reqwest::Client::new()
+            .post(&format!("{}/sample_file", &self.address))
+            .header("Content-Type", "application/octet-stream")
+            .body(body)
+            .send()
+            .await
+            .expect("Failed to execute request.")
+    }
 }
 
 pub async fn spawn_app() -> TestApp {
