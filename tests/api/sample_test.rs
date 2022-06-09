@@ -37,3 +37,17 @@ async fn post_sample_file_works() {
     // Assert
     assert!(response.status().is_success());
 }
+
+#[tokio::test]
+async fn post_json_file_works() {
+    let app = spawn_app().await;
+
+    // Load a GIF file
+    let input: &[u8] = include_bytes!("../../tests/files/sample_json.json");
+
+    let body = Vec::from(input);
+    let response = app.post_file_sample(body).await;
+
+    // Assert
+    assert!(response.status().is_success());
+}
