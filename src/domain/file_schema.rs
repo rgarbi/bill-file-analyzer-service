@@ -13,8 +13,8 @@ pub struct File {
 pub struct Column {
     pub id: Uuid,
     pub column_name: String,
-    pub column_data_type: String,
-    pub small_number: i8,
+    pub column_data_type: ColumnDataType,
+    pub column_description: String,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
@@ -25,15 +25,11 @@ pub enum ColumnDataType {
     DATE,
 }
 
-
-
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub enum FileType {
     JSON,
     CSV,
 }
-
-
 
 impl FileType {
     pub fn as_str(&self) -> &'static str {
