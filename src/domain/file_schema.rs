@@ -2,11 +2,12 @@ use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 #[derive(Deserialize, Serialize, Debug)]
-pub struct File {
+pub struct FileDefinition {
     pub id: Uuid,
+    pub name: String,
+    pub description: String,
     pub file_type: FileType,
-    pub number: i64,
-    pub small_number: i8,
+    pub columns: Vec<Column>,
 }
 
 #[derive(Deserialize, Serialize, Debug)]
@@ -40,7 +41,7 @@ impl FileType {
     }
 }
 
-impl File {
+impl FileDefinition {
     pub fn to_json(&self) -> String {
         serde_json::to_string(self).expect("Was not able to serialize.")
     }
